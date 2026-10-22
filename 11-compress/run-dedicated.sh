@@ -14,6 +14,7 @@ echo "==> machine info"
   grep -m1 'model name' /proc/cpuinfo || true
   echo "cores: $(nproc)"
   uname -a
+  free -h
 } | tee "$HOME/machine.txt"
 
 export PATH="$PATH:/usr/local/go/bin"
@@ -49,9 +50,11 @@ echo "==> installing benchstat ${BENCHSTAT_VERSION}"
 go install "golang.org/x/perf/cmd/benchstat@${BENCHSTAT_VERSION}"
 export PATH="$PATH:$(go env GOPATH)/bin"
 
-echo "==> checking both variants build and pass tests"
-go test ./compress ./proto
-go test -tags growfast ./compress ./proto
+echo "==> verifying the compress package (the package under benchmark)"
+echo "    the full ./proto suite was already run green in CI on this commit;"
+echo "    it contains a 2^32-iteration test that is too heavy for small instances"
+go test -short ./compress
+go test -short -tags growfast ./compress
 
 echo "==> baseline run (count=${COUNT})"
 go test -run '^$' -bench "$BENCH" -benchmem -count="$COUNT" ./compress | tee "$OUT/old.txt"
