@@ -1,0 +1,45 @@
+﻿goos: linux
+goarch: amd64
+pkg: github.com/ClickHouse/ch-go/compress
+cpu: AMD EPYC 9V45 96-Core Processor                
+                        Γöé   sec/op    Γöé   sec/op     vs base                Γöé
+Writer_Compress/NONE-4    2.192┬╡ ┬▒ 2%   1.959┬╡ ┬▒ 2%  -10.65% (p=0.000 n=10)
+Writer_Compress/LZ4-4     1.359┬╡ ┬▒ 1%   1.163┬╡ ┬▒ 2%  -14.35% (p=0.000 n=10)
+Writer_Compress/LZ4HC-4   23.89┬╡ ┬▒ 2%   23.75┬╡ ┬▒ 1%        ~ (p=0.739 n=10)
+Writer_Compress/ZSTD-4    2.746┬╡ ┬▒ 2%   2.516┬╡ ┬▒ 1%   -8.36% (p=0.000 n=10)
+Reader_Read/NONE-4        1.994┬╡ ┬▒ 1%   1.711┬╡ ┬▒ 2%  -14.17% (p=0.000 n=10)
+Reader_Read/LZ4-4         2.021┬╡ ┬▒ 1%   1.760┬╡ ┬▒ 1%  -12.89% (p=0.000 n=10)
+Reader_Read/LZ4HC-4       2.030┬╡ ┬▒ 4%   1.754┬╡ ┬▒ 1%  -13.62% (p=0.000 n=10)
+Reader_Read/ZSTD-4        2.955┬╡ ┬▒ 1%   2.667┬╡ ┬▒ 2%   -9.76% (p=0.000 n=10)
+geomean                   2.879┬╡        2.572┬╡       -10.65%
+Writer_Compress/NONE-4    12.24Gi ┬▒ 2%    13.70Gi ┬▒ 2%  +11.94% (p=0.000 n=10)
+Writer_Compress/LZ4-4     19.74Gi ┬▒ 1%    23.05Gi ┬▒ 2%  +16.76% (p=0.000 n=10)
+Writer_Compress/LZ4HC-4   1.123Gi ┬▒ 2%    1.129Gi ┬▒ 1%        ~ (p=0.739 n=10)
+Writer_Compress/ZSTD-4    9.768Gi ┬▒ 2%   10.661Gi ┬▒ 1%   +9.14% (p=0.000 n=10)
+Reader_Read/NONE-4        9.580Gi ┬▒ 1%   11.161Gi ┬▒ 2%  +16.50% (p=0.000 n=10)
+Reader_Read/LZ4-4         9.488Gi ┬▒ 1%   10.895Gi ┬▒ 1%  +14.83% (p=0.000 n=10)
+Reader_Read/LZ4HC-4       9.445Gi ┬▒ 4%   10.936Gi ┬▒ 1%  +15.79% (p=0.000 n=10)
+Reader_Read/ZSTD-4        6.467Gi ┬▒ 1%    7.166Gi ┬▒ 2%  +10.80% (p=0.000 n=10)
+geomean                   7.869Gi         8.808Gi       +11.92%
+                        Γöé     B/op     Γöé    B/op     vs base                 Γöé
+Writer_Compress/NONE-4    0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Writer_Compress/LZ4-4     0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Writer_Compress/LZ4HC-4   0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Writer_Compress/ZSTD-4    0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Reader_Read/NONE-4        0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Reader_Read/LZ4-4         0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Reader_Read/LZ4HC-4       0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Reader_Read/ZSTD-4        0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+geomean                              ┬▓               +0.00%                ┬▓
+┬▓ summaries must be >0 to compute geomean
+                        Γöé  allocs/op   Γöé allocs/op   vs base                 Γöé
+Writer_Compress/NONE-4    0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Writer_Compress/LZ4-4     0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Writer_Compress/LZ4HC-4   0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Writer_Compress/ZSTD-4    0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Reader_Read/NONE-4        0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Reader_Read/LZ4-4         0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Reader_Read/LZ4HC-4       0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+Reader_Read/ZSTD-4        0.000 ┬▒ 0%     0.000 ┬▒ 0%       ~ (p=1.000 n=10) ┬╣
+geomean                              ┬▓               +0.00%                ┬▓
+┬▓ summaries must be >0 to compute geomean
