@@ -1,0 +1,55 @@
+goos: linux
+goarch: amd64
+pkg: github.com/ClickHouse/ch-go/compress
+cpu: Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz
+                        │ /home/ubuntu/ch-go-bench/old.txt │  /home/ubuntu/ch-go-bench/new.txt   │
+                        │              sec/op              │   sec/op     vs base                │
+Writer_Compress/NONE-2                         5.061µ ± 0%   4.665µ ± 0%   -7.83% (p=0.000 n=20)
+Writer_Compress/LZ4-2                          3.713µ ± 1%   3.111µ ± 0%  -16.21% (p=0.000 n=20)
+Writer_Compress/LZ4HC-2                        54.77µ ± 0%   54.00µ ± 0%   -1.40% (p=0.000 n=20)
+Writer_Compress/ZSTD-2                         8.138µ ± 0%   7.137µ ± 0%  -12.31% (p=0.000 n=20)
+Reader_Read/NONE-2                             4.949µ ± 0%   4.489µ ± 0%   -9.29% (p=0.000 n=20)
+Reader_Read/LZ4-2                              5.033µ ± 0%   4.540µ ± 0%   -9.79% (p=0.000 n=20)
+Reader_Read/LZ4HC-2                            5.023µ ± 0%   4.539µ ± 0%   -9.63% (p=0.000 n=20)
+Reader_Read/ZSTD-2                             6.814µ ± 0%   6.350µ ± 0%   -6.82% (p=0.000 n=20)
+geomean                                        7.190µ        6.525µ        -9.25%
+
+                        │ /home/ubuntu/ch-go-bench/old.txt │   /home/ubuntu/ch-go-bench/new.txt   │
+                        │               B/s                │     B/s       vs base                │
+Writer_Compress/NONE-2                        5.300Gi ± 0%   5.750Gi ± 0%   +8.50% (p=0.000 n=20)
+Writer_Compress/LZ4-2                         7.224Gi ± 1%   8.621Gi ± 0%  +19.34% (p=0.000 n=20)
+Writer_Compress/LZ4HC-2                       501.5Mi ± 0%   508.6Mi ± 0%   +1.42% (p=0.000 n=20)
+Writer_Compress/ZSTD-2                        3.296Gi ± 0%   3.758Gi ± 0%  +14.03% (p=0.000 n=20)
+Reader_Read/NONE-2                            3.859Gi ± 0%   4.254Gi ± 0%  +10.24% (p=0.000 n=20)
+Reader_Read/LZ4-2                             3.810Gi ± 0%   4.222Gi ± 0%  +10.84% (p=0.000 n=20)
+Reader_Read/LZ4HC-2                           3.817Gi ± 0%   4.224Gi ± 0%  +10.66% (p=0.000 n=20)
+Reader_Read/ZSTD-2                            2.804Gi ± 0%   3.009Gi ± 0%   +7.31% (p=0.000 n=20)
+geomean                                       3.151Gi        3.472Gi       +10.19%
+
+                        │ /home/ubuntu/ch-go-bench/old.txt │  /home/ubuntu/ch-go-bench/new.txt   │
+                        │               B/op               │    B/op     vs base                 │
+Writer_Compress/NONE-2                        0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Writer_Compress/LZ4-2                         0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Writer_Compress/LZ4HC-2                       0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Writer_Compress/ZSTD-2                        0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Reader_Read/NONE-2                            0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Reader_Read/LZ4-2                             0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Reader_Read/LZ4HC-2                           0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Reader_Read/ZSTD-2                            0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+geomean                                                  ²               +0.00%                ²
+¹ all samples are equal
+² summaries must be >0 to compute geomean
+
+                        │ /home/ubuntu/ch-go-bench/old.txt │  /home/ubuntu/ch-go-bench/new.txt   │
+                        │            allocs/op             │ allocs/op   vs base                 │
+Writer_Compress/NONE-2                        0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Writer_Compress/LZ4-2                         0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Writer_Compress/LZ4HC-2                       0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Writer_Compress/ZSTD-2                        0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Reader_Read/NONE-2                            0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Reader_Read/LZ4-2                             0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Reader_Read/LZ4HC-2                           0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+Reader_Read/ZSTD-2                            0.000 ± 0%     0.000 ± 0%       ~ (p=1.000 n=20) ¹
+geomean                                                  ²               +0.00%                ²
+¹ all samples are equal
+² summaries must be >0 to compute geomean
