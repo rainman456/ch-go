@@ -49,9 +49,9 @@ func (r *Reader) readBlock() error {
 		return errors.Errorf("raw size should be %d < %d < %d", 0, rawSize, maxBlockSize)
 	}
 
-	r.data = append(r.data[:0], make([]byte, dataSize)...)
-	r.raw = append(r.raw[:0], r.header...)
-	r.raw = append(r.raw, make([]byte, rawSize)...)
+	r.data = growBuf(r.data, dataSize)
+	r.raw = growBuf(r.raw, headerSize+rawSize)
+	copy(r.raw[:headerSize], r.header)
 	_ = r.raw[:rawSize+headerSize-1]
 
 	if _, err := io.ReadFull(r.reader, r.raw[headerSize:]); err != nil {
@@ -105,7 +105,11 @@ func (r *Reader) readBlock() error {
 		}
 		r.data = data
 	case encodedNone:
-		copy(r.data, r.raw[headerSize:])
+		n := copy(r.data, r.raw[headerSize:])
+		// A payload may be shorter than the declared size; zero whatever the
+		// server did not send, so bytes from the previous block never show
+		// through the tail. The buffer reset used to take care of this.
+		clear(r.data[n:])
 	default:
 		return errors.Errorf("compression 0x%02x not implemented", m)
 	}
